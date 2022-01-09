@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text / html; charset = utf-8" />
+  <title>Private Kakeibo</title>
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{% static 'kakeibo/css/style.css' %}">
+</head>
+
+<body>
+
+  {% include "kakeibo/components/header.html" %}
+
+  <div class="container pt-5 pb-5">
+    {% include "kakeibo/components/message.html" %}
+    {% block content %}{% endblock %}
+  </div>
+  <!-- MDB -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/3.10.1/mdb.min.js"></script>
+  <script>
+    for (const element of document.querySelectorAll('.js-alert > .js-alert-close')) {
+      element.addEventListener('click', e => {
+        e.target.parentElement.classList.add('is-hidden');
+      });
+    }
+
+    for (const link of document.getElementsByClassName('nav-link')) {
+      const path='{{ request.path }}'.split('/')[1]
+      const href =link.getAttribute('href').split('/')[1]      
+      if(path===href){
+        link.classList.add('text-secondary')
+      };
+    }
+
+  </script>
+  {% block extrajs %}{% endblock %}
+</body>
+
+</html>

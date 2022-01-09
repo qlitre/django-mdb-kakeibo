@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">Private Kakeibo</a>
+    <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kakeibo:payment_list'%}">Payments</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kakeibo:income_list'%}">
+            Incomes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kakeibo:asset_list'%}">
+            Assets
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kakeibo:monthly_balance' now_year now_month%}">
+            <i class="fas fa-chart-pie"></i>
+            Monthly Balance
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kakeibo:transition' %}">
+            <i class="fas fa-chart-line"></i>
+            Balance Transition
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'kakeibo:asset_dashboard' now_year now_month %}">
+            <i class="fas fa-tachometer-alt"></i>
+            Asset Dash
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin">Admin</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

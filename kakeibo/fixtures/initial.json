@@ -1,0 +1,109 @@
+[{
+  "model": "kakeibo.paymentcategory",
+  "pk": 1,
+  "fields": {
+    "name": "食費"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 2,
+  "fields": {
+    "name": "健康 / 医療"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 3,
+  "fields": {
+    "name": "住宅"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 4,
+  "fields": {
+    "name": "交通"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 5,
+  "fields": {
+    "name": "水道光熱 / 通信"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 6,
+  "fields": {
+    "name": "旅行"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 7,
+  "fields": {
+    "name": "その他"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 8,
+  "fields": {
+    "name": "投資"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 9,
+  "fields": {
+    "name": "外食"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 10,
+  "fields": {
+    "name": "交際費"
+  }
+}, {
+  "model": "kakeibo.paymentcategory",
+  "pk": 11,
+  "fields": {
+    "name": "クレジット"
+  }
+}, {
+  "model": "kakeibo.incomecategory",
+  "pk": 1,
+  "fields": {
+    "name": "給料"
+  }
+}, {
+  "model": "kakeibo.incomecategory",
+  "pk": 2,
+  "fields": {
+    "name": "ボーナス"
+  }
+}, {
+  "model": "kakeibo.incomecategory",
+  "pk": 3,
+  "fields": {
+    "name": "利息"
+  }
+}, {
+  "model": "kakeibo.incomecategory",
+  "pk": 4,
+  "fields": {
+    "name": "その他"
+  }
+}, {
+  "model": "kakeibo.assetcategory",
+  "pk": 1,
+  "fields": {
+    "name": "現金"
+  }
+}, {
+  "model": "kakeibo.assetcategory",
+  "pk": 2,
+  "fields": {
+    "name": "日本株式"
+  }
+}, {
+  "model": "kakeibo.assetcategory",
+  "pk": 3,
+  "fields": {
+    "name": "米国株式"
+  }
+}]

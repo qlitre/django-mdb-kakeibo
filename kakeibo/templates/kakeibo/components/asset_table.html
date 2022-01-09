@@ -1,0 +1,33 @@
+{% load humanize %}
+<div class="table-responsive">
+  <table class="table table-sm table-striped table-bordered">
+    {% include "kakeibo/components/thead.html" %}
+    <tbody>
+      {% for asset in asset_list %}
+      <tr>
+        <th class="text-end">{{ asset.date|date:'Y-m' }}</th>
+        <th class="text-end">{{ asset.category }}</th>
+        <th class="text-end">{{ asset.amount|intcomma}}</th>
+        <th class="text-start">
+          {% if asset.description %}
+          {{ asset.description }}
+          {% endif %}
+        </th>
+        <th class="text-center">
+          <button type="button" class="btn btn-floating btn-danger delete-modal-button"
+          data-mdb-toggle="modal"
+          data-mdb-target="#itemDeleteModal"
+          data-deleteurl="{% url 'kakeibo:asset_delete' asset.pk %}"
+          data-date="{{ asset.date|date:'Y-m-d' }}"
+          data-category="{{ asset.category }}"
+          data-amount="{{ asset.amount }}"
+          data-description="{{ asset.description }}"
+          >
+          <i class="far fa-trash-alt"></i>
+          </button>
+        </th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

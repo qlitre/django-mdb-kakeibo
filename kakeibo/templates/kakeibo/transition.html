@@ -1,0 +1,37 @@
+{% extends 'kakeibo/base.html' %}
+{% load static %}
+
+{% block content %}
+<form id="search-form" action="" method="GET">
+  <div class="row">
+    <div class="col-md-2">
+      <label class="form-label" for="id_graph_visible">Graph Choice</label>
+      {{ search_form.graph_visible }}
+    </div>
+    {% if search_form.cleaned_data.graph_visible != 'Income' %}
+    <div class="col-md-2">
+      <label class="form-label" for="id_payment_category">Payment Category</label>
+      {{ search_form.payment_category }}
+    </div>
+    {% endif %}
+    {% if search_form.cleaned_data.graph_visible != 'Payment' %}
+    <div class="col-md-2">
+      <label class="form-label" for="id_income_category">Income Category</label>
+      {{ search_form.income_category }}
+    </div>
+    {% endif %}
+  </div>
+</form>
+
+<div class="card border border-primary shadow-0 h-100 mt-4">
+  <div class="card-body">
+    <canvas id="lineChart" height="100"></canvas>
+  </div>
+</div>
+
+{% endblock %}
+{% block extrajs %}
+<script src="{% static 'kakeibo/js/transitionSearch.js' %}"></script>
+{% include "kakeibo/components/cdn_chartjs.html" %}
+{% include "kakeibo/components/transition_chart.html" %}
+{% endblock %}

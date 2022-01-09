@@ -1,0 +1,10 @@
+@charset "UTF-8";
+
+body {
+  font-size: 16px;
+  background-color: #fafafa;
+}
+
+.is-hidden {
+  display: none;
+}

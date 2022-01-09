@@ -1,0 +1,66 @@
+<script>
+const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+const lineChartLabels = [
+  {% for label in labels %}
+  '{{ label }}',
+  {% endfor %}
+];
+const lineChartData = {
+  labels: lineChartLabels,
+  datasets: [
+    {% if payments %}
+    {
+      label: 'Payment',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [
+        {% for payment in payments %}
+        {{ payment }},
+        {% endfor %}
+      ],
+      tension:0.4,
+    },
+    {% endif %}
+    {% if incomes %}
+    {
+      label: 'Income',
+      backgroundColor: 'rgb(75, 192, 192)',
+      borderColor: 'rgb(75, 192, 192)',
+      data: [
+        {% for income in incomes %}
+        {{ income }},
+        {% endfor %}
+      ],
+      tension:0.4,
+    },
+    {% endif %}
+  ]
+};
+
+const lineChart = new Chart(lineChartCtx, {
+  type: 'line',
+  data: lineChartData,
+  options: {
+    responsive: true,
+    scales: {
+      x: {
+        grid: {
+          display:false,
+        },
+        ticks: {
+          // For a category axis, the val is the index so the lookup via getLabelForValue is needed
+          callback: function(val, index) {
+            // Hide every 2nd tick label
+            return index % 2 === 0 ? this.getLabelForValue(val) : '';
+          },
+        },
+      },
+      y:{
+        grid:{
+          display:false
+        }
+      }
+    }
+  },
+});
+</script>

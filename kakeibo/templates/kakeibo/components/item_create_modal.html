@@ -1,0 +1,33 @@
+<div class="modal fade" id="itemCreateModal" tabindex="-1" aria-labelledby="itemCreateModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="mt-5" action="{{ action_url }}" method="POST">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="itemCreateModalLabel">Register</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mt-2">
+            {{ create_form.date }}
+          </div>
+          <div class="mt-2">
+            {{ create_form.category }}
+          </div>
+          <div class="mt-2">
+            {{ create_form.amount }}
+          </div>
+          <div class="mt-2">
+            {{ create_form.description }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" type="submit" name="button">Send</button>
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+            Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

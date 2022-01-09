@@ -1,0 +1,73 @@
+{% load humanize %}
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th scope="col" class="text-end" width="20%">Category</th>
+      <th scope="col" class="text-end" width="20%">Now</th>
+      <th scope="col" class="text-end" width="15%">Vs PM</th>
+      <th scope="col" class="text-end" width="15%">Vs BOY</th>
+      <th scope="col" class="text-end">Composition Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for k,v in table_set.items %}
+    <tr>
+      <th class="text-end">{{ k }}</th>
+      <th class="text-end">{{ v.now|intcomma }}</th>
+      <th class="text-end">
+      {% if v.diff_prev_month >= 0 %}
+        <span class="d-block text-primary">+{{ v.diff_prev_month|intcomma }}</span>
+          {% if v.diff_ratio_prev_month %}
+            <span class="mt-0 text-primary">+{{ v.diff_ratio_prev_month }}%</span>
+        {% endif %}
+      {% else %}
+        <span class="d-block text-danger">{{ v.diff_prev_month|intcomma }}</span>
+        <span class="mt-0 text-danger">{{ v.diff_ratio_prev_month }}%</span>
+      {% endif %}
+      </th>
+      <th class="text-end">
+        {% if v.diff_begin_term >= 0 %}
+        <span class="d-block text-primary">+{{ v.diff_begin_term|intcomma }}</span>
+          {% if v.diff_ratio_begin_term %}
+          <span class="mt-0 text-primary">+{{ v.diff_ratio_begin_term }}%</span>
+          {% endif %}
+        {% else %}
+        <span class="d-block text-danger">{{ v.diff_begin_term|intcomma }}</span>
+        <span class="mt-0 text-danger">{{ v.diff_ratio_begin_term }}%</span>
+        {% endif %}
+      </th>
+      <th class="text-end">{{ v.composition_ratio }}%</th>
+    </tr>
+    {% endfor %}
+    {% if total %}
+    <tr>
+      <th class="text-end">Total</th>
+      <th class="text-end">{{ total.now|intcomma }}</th>
+      <th class="text-end">
+        {% if total.diff_prev_month >= 0 %}
+        <span class="d-block text-primary">+{{ total.diff_prev_month|intcomma }}</span>
+          {% if total.diff_ratio_prev_month %}
+            <span class="mt-0 text-primary">+{{ total.diff_ratio_prev_month }}%</span>
+          {% endif %}
+        {% else %}
+        <span class="d-block text-danger">{{ total.diff_prev_month|intcomma }}</span>
+        <span class="mt-0 text-danger">{{ total.diff_ratio_prev_month }}%</span>
+        {% endif %}
+      </th>
+      <th class="text-end">
+        {% if total.diff_begin_term >= 0 %}
+        <span class="d-block text-primary">+{{ total.diff_begin_term|intcomma }}</span>
+          {% if total.diff_ratio_begin_term %}
+            <span class="mt-0 text-primary">+{{ total.diff_ratio_begin_term }}%</span>
+          {% endif %}
+        {% else %}
+        <span class="d-block text-danger">{{ total.diff_begin_term|intcomma }}</span>
+        <span class="mt-0 text-danger">{{ total.diff_ratio_begin_term }}%</span>
+        {% endif %}
+      </th>
+      <th></th>
+    </tr>
+    {% endif %}
+  </tbody>
+</table>

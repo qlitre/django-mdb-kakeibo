@@ -1,0 +1,19 @@
+{% load humanize %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" class="text-end" width="30%">Category</th>
+      <th scope="col" class="text-end" width="30%">Amount</th>
+      <th scope="col" class="text-end">Composition Ratio</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for key,value in table_set.items %}
+    <tr>
+      <th class="text-end">{{ key }}</th>
+      <th class="text-end">{{ value.amount|intcomma }}</th>
+      <th class="text-end">{{ value.composition_ratio }}%</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

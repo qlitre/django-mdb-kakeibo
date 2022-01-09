@@ -1,0 +1,9 @@
+{% if messages %}
+<div class="alert alert-warning alert-dismissible fade show js-alert" role="alert">
+  {% for message in messages %}
+  <p> {{ message|linebreaks }}</p>
+  {% endfor %}
+  <button type="button" class="btn-close js-alert-close" data-dismiss="alert" aria-label="Close">
+  </button>
+</div>
+{% endif %}

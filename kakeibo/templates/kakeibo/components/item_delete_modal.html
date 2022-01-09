@@ -1,0 +1,26 @@
+<div class="modal fade" id="itemDeleteModal" tabindex="-1" aria-labelledby="itemDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form class="mt-5" id="delete-form" method="POST">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title" id="itemDeleteModalLabel">Delete</h5>
+          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Confirm</p>
+          <p id="delete-date"></p>
+          <p id="delete-category"></p>
+          <p id="delete-amount"></p>
+          <p id="delete-description"></p>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-danger" type="submit" name="button">Yes,Delete</button>
+          <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+            No, Close
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

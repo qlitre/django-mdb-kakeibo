@@ -1,0 +1,33 @@
+{% load humanize %}
+<div class="table-responsive">
+  <table class="table table-sm table-striped table-bordered shadow-1">
+    {% include "kakeibo/components/thead.html" %}
+    <tbody>
+      {% for income in income_list %}
+      <tr>
+        <th class="text-end">{{ income.date|date:'Y-m-d' }}</th>
+        <th class="text-end">{{ income.category }}</th>
+        <th class="text-end">{{ income.amount|intcomma}}</th>
+        <th class="text-start">
+          {% if income.description %}
+          {{ income.description }}
+          {% endif %}
+        </th>
+        <th class="text-center">
+          <button type="button" class="btn btn-floating btn-danger delete-modal-button"
+          data-mdb-toggle="modal"
+          data-mdb-target="#itemDeleteModal"
+          data-deleteurl="{% url 'kakeibo:income_delete' income.pk %}"
+          data-date="{{ income.date|date:'Y-m-d' }}"
+          data-category="{{ income.category }}"
+          data-amount="{{ income.amount }}"
+          data-description="{{ income.description }}"
+          >
+          <i class="far fa-trash-alt"></i>
+          </button>
+        </th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

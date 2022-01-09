@@ -1,0 +1,31 @@
+<script>
+  const donutChartCtx = document.getElementById('donutChart').getContext('2d');
+
+  const donutChartLabels = [
+    {%for category in categories %}
+    '{{ category }}',
+    {%endfor %}
+  ]
+
+  const donutChartData = {
+    labels: donutChartLabels,
+    datasets: [{
+      label: 'Donut Chart',
+      data: [
+        {%for payment in payments_of_category %}
+        {{payment}},
+        {%endfor%}
+      ],
+      backgroundColor: [
+        {%for c in color_map %}
+        '{{ c }}',
+        {%endfor %}
+      ],
+    }]
+  };
+
+  const donutChart = new Chart(donutChartCtx, {
+    type: 'doughnut',
+    data: donutChartData,
+  });
+</script>

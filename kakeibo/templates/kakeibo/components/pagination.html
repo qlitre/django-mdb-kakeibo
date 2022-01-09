@@ -1,0 +1,14 @@
+{% load kakeibo %}
+
+
+{% if page_obj.has_previous %}
+<a class="btn btn-sm btn-light btn-floating" href="?{% url_replace request 'page' page_obj.previous_page_number %}"><i class="fas fa-chevron-left"></i></a>
+{% endif %}
+
+<span class="ms-4 me-4 fs-5">
+{{ page_obj.number }} / {{ page_obj.paginator.num_pages }}
+</span>
+
+{% if page_obj.has_next %}
+<a class="btn btn-sm btn-light btn-floating" href="?{% url_replace request 'page' page_obj.next_page_number %}"><i class="fas fa-chevron-right"></i></a>
+{% endif %}

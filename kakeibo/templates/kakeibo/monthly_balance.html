@@ -1,0 +1,85 @@
+{% extends 'kakeibo/base.html' %}
+{% load humanize %}
+{% block content %}
+
+<div class="text-center">
+  <a class="btn btn-sm btn-light btn-floating" href="{% url 'kakeibo:monthly_balance' prev_year prev_month %}">
+    <i class="fas fa-chevron-left"></i>
+  </a>
+  <span class="ms-4 me-4 fs-5">{{ year_month|date:"Y-m" }}</span>
+  <a class="btn btn-sm btn-light btn-floating" href="{% url 'kakeibo:monthly_balance' next_year next_month %}">
+    <i class="fas fa-chevron-right"></i>
+  </a>
+</div>
+
+<div class="row mt-5">
+  <div class="col-md-4">
+    <div class="card bg-light h-100">
+      <div class="card-header text-white bg-secondary text-center ls-widest font-weight-bold">
+        Margin
+      </div>
+      <div class="card-body">
+        <h4 class="card-title text-center">
+          {% if diff %}
+            {% if diff >= 0 %}
+            <span class="text-primary">+{{ diff|intcomma }}</span>
+            {% else %}
+            <span class="text-danger">{{ diff|intcomma }}</span>
+            {% endif %}
+          {% endif %}
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card bg-light h-100">
+      <div class="card-header text-white bg-warning text-center ls-widest font-weight-bold">
+        Payment Total
+      </div>
+      <div class="card-body">
+        {% if total_payment %}
+          <h4 class="card-title text-center">{{ total_payment|intcomma }}</h4>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card bg-light h-100">
+      <div class="card-header text-white bg-info text-center ls-widest font-weight-bold">
+        Income Total
+      </div>
+      <div class="card-body">
+        {% if total_income %}
+          <h4 class="card-title text-center">{{ total_income|intcomma }}</h4>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-5">
+  <div class="col">
+    <div class="card bg-light h-100">
+      <div class="card-header text-white bg-primary text-center ls-widest font-weight-bold">
+        Description Of Payment
+      </div>
+      <div class="card-body">
+        {% include "kakeibo/components/monthly_balance_table.html" %}
+      </div>
+    </div>
+
+  </div>
+  <div class="col">
+    <div class="card border border-primary shadow-0 h-100">
+      <div class="card-body">
+        <canvas id="donutChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+{% block extrajs %}
+{% include "kakeibo/components/cdn_chartjs.html" %}
+{% include "kakeibo/components/monthly_balance_chart.html" %}
+{% endblock %}

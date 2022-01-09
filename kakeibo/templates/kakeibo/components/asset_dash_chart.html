@@ -1,0 +1,100 @@
+<script>
+const lineLabels=[{% for month in months %}'{{ month }}',{% endfor %}];
+const lineOptions={
+  responsive: true,
+  scales: {
+    x: {
+      grid: {
+        display:false,
+      },
+      ticks: {
+        callback: function(val, index) {
+          return index % 4 === 0 ? this.getLabelForValue(val) : '';
+        },
+      },
+    },
+    y:{
+      grid:{
+        display:false
+      },
+      position: 'left',
+    },
+    y1:{
+      grid:{
+        display:false
+      },
+      position: 'right',
+    },
+  }
+};
+
+const lineChartCtx = document.getElementById('lineChart').getContext('2d');
+const lineChartData = {
+  labels: lineLabels,
+  datasets: [
+    {
+      label: 'Asset',
+      type:'bar',
+      fill:false,
+      backgroundColor: "rgba(75, 192, 192, 0.5)",
+      borderColor: 'rgb(75, 192, 192)',
+      data: [
+        {% for amount in amounts %}
+        {{ amount }},
+        {% endfor %}
+      ],
+      yAxisID:'y',
+    },
+    {
+      label: 'Rate Increase',
+      type:'line',
+      backgroundColor: 'rgb(54, 162, 235)',
+      borderColor: 'rgb(54, 162, 235)',
+      borderWidth: 2,
+      data: [
+        {% for v in spark_values %}
+        {{ v }},
+        {% endfor %}
+      ],
+      yAxisID:'y1',
+      tension: 0.4,
+    },
+  ]
+};
+
+const lineChart = new Chart(lineChartCtx, {
+  data: lineChartData,
+  options: lineOptions,
+});
+
+const donutChartCtx = document.getElementById('donutChart').getContext('2d');
+
+const donutChartLabels = [{% for label in donut_labels %}
+  '{{ label }}',
+  {% endfor %}
+]
+
+const donutChartData = {
+  labels: donutChartLabels,
+  datasets: [{
+    label: 'Asset Allocation',
+    data: [
+      {% for price in donut_prices %}
+      {{ price }},
+      {% endfor %}
+    ],
+    backgroundColor: [
+      {% for c in color_map %}
+      '{{ c }}',
+      {% endfor %}
+    ],
+  }]
+};
+
+const donutChart = new Chart(donutChartCtx, {
+  type: 'doughnut',
+  data: donutChartData,
+
+});
+
+</script>

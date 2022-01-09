@@ -1,0 +1,33 @@
+<form class="mt-2" id="search-form" name="search-form" method="GET">
+  <div class="row">
+    <div class="col-md-1">
+      <label class="form-label" for="id_year">Year</label>
+      {{ search_form.year }}
+    </div>
+    <div class="col-md-1">
+      <label class="form-label" for="id_month">Month</label>
+      {{ search_form.month }}
+    </div>
+    <div class="col-md-2">
+      <label class="form-label" for="id_search_category">Category</label>
+      {{ search_form.search_category }}
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-md-2">
+      {{ search_form.greater_than }}
+    </div>
+    <div class="col-md-2">
+      {{ search_form.less_than }}
+    </div>
+  </div>
+  <div class="row mt-3">
+    <div class="col-md-2">
+      {{ search_form.key_word }}
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-sm btn-primary ml-4" type="submit">Search</button>
+    </div>
+  </div>
+</form>
