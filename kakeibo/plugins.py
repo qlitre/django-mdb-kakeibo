@@ -355,7 +355,7 @@ class AssetDashMixin(MonthPagerMixin, BaseDashPageMixin):
         data = self.get_month_pager_data()
 
         # 何もない場合はこの時点で返す
-        if not Asset.objects.all().exists:
+        if not Asset.objects.all().exists():
             return data
 
         # 推移グラフデータ
