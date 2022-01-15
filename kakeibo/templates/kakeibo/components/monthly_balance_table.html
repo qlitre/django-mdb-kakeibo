@@ -8,11 +8,11 @@
     </tr>
   </thead>
   <tbody>
-    {% for key,value in table_set.items %}
+    {% for item in table_items %}
     <tr>
-      <th class="text-end">{{ key }}</th>
-      <th class="text-end">{{ value.amount|intcomma }}</th>
-      <th class="text-end">{{ value.composition_ratio }}%</th>
+      <th class="text-end">{{ item.category }}</th>
+      <th class="text-end">{{ item.amount|intcomma }}</th>
+      <th class="text-end">{{ item.composition_ratio }}%</th>
     </tr>
     {% endfor %}
   </tbody>

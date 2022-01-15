@@ -2,8 +2,8 @@
   const donutChartCtx = document.getElementById('donutChart').getContext('2d');
 
   const donutChartLabels = [
-    {%for category in categories %}
-    '{{ category }}',
+    {%for label in donut_chart_labels %}
+    '{{ label }}',
     {%endfor %}
   ]
 
@@ -12,8 +12,8 @@
     datasets: [{
       label: 'Donut Chart',
       data: [
-        {%for payment in payments_of_category %}
-        {{payment}},
+        {%for value in donut_chart_values %}
+        {{ value }},
         {%endfor%}
       ],
       backgroundColor: [

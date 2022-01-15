@@ -39,8 +39,8 @@ const lineChartData = {
       backgroundColor: "rgba(75, 192, 192, 0.5)",
       borderColor: 'rgb(75, 192, 192)',
       data: [
-        {% for amount in amounts %}
-        {{ amount }},
+        {% for height in heights %}
+        {{ height }},
         {% endfor %}
       ],
       yAxisID:'y',
@@ -52,8 +52,8 @@ const lineChartData = {
       borderColor: 'rgb(54, 162, 235)',
       borderWidth: 2,
       data: [
-        {% for v in spark_values %}
-        {{ v }},
+        {% for height in spark_heights %}
+        {{ height }},
         {% endfor %}
       ],
       yAxisID:'y1',
@@ -66,35 +66,4 @@ const lineChart = new Chart(lineChartCtx, {
   data: lineChartData,
   options: lineOptions,
 });
-
-const donutChartCtx = document.getElementById('donutChart').getContext('2d');
-
-const donutChartLabels = [{% for label in donut_labels %}
-  '{{ label }}',
-  {% endfor %}
-]
-
-const donutChartData = {
-  labels: donutChartLabels,
-  datasets: [{
-    label: 'Asset Allocation',
-    data: [
-      {% for price in donut_prices %}
-      {{ price }},
-      {% endfor %}
-    ],
-    backgroundColor: [
-      {% for c in color_map %}
-      '{{ c }}',
-      {% endfor %}
-    ],
-  }]
-};
-
-const donutChart = new Chart(donutChartCtx, {
-  type: 'doughnut',
-  data: donutChartData,
-
-});
-
 </script>

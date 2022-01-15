@@ -14,6 +14,6 @@ urlpatterns = [
     path('income_delete/<int:pk>/', views.IncomeDelete.as_view(), name='income_delete'),
     path('asset_delete/<int:pk>/', views.AssetDelete.as_view(), name='asset_delete'),
     path('monthly_balance/<int:year>/<int:month>/', views.MonthlyBalance.as_view(), name='monthly_balance'),
-    path('transition/', views.TransitionView.as_view(), name='transition'),
+    path('balance_transition/', views.TransitionView.as_view(), name='balance_transition'),
     path('asset_dashboard/<int:year>/<int:month>/', views.AssetDashboard.as_view(), name='asset_dashboard'),
 ]

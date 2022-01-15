@@ -1,5 +1,6 @@
 {% load kakeibo %}
 
+<div class="text-center mb-3">
 
 {% if page_obj.has_previous %}
 <a class="btn btn-sm btn-light btn-floating" href="?{% url_replace request 'page' page_obj.previous_page_number %}"><i class="fas fa-chevron-left"></i></a>
@@ -12,3 +13,5 @@
 {% if page_obj.has_next %}
 <a class="btn btn-sm btn-light btn-floating" href="?{% url_replace request 'page' page_obj.next_page_number %}"><i class="fas fa-chevron-right"></i></a>
 {% endif %}
+
+</div>

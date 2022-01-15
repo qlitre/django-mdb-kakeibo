@@ -3,11 +3,11 @@
 {% block content %}
 
 <div class="text-center">
-  <a class="btn btn-sm btn-light btn-floating" href="{% url 'kakeibo:monthly_balance' prev_year prev_month %}">
+  <a class="btn btn-sm btn-light btn-floating" href="{% url 'kakeibo:monthly_balance' prev_month.year prev_month.month %}">
     <i class="fas fa-chevron-left"></i>
   </a>
-  <span class="ms-4 me-4 fs-5">{{ year_month|date:"Y-m" }}</span>
-  <a class="btn btn-sm btn-light btn-floating" href="{% url 'kakeibo:monthly_balance' next_year next_month %}">
+  <span class="ms-4 me-4 fs-5">{{ current_month|date:"Y-m" }}</span>
+  <a class="btn btn-sm btn-light btn-floating" href="{% url 'kakeibo:monthly_balance' next_month.year next_month.month %}">
     <i class="fas fa-chevron-right"></i>
   </a>
 </div>
@@ -16,15 +16,15 @@
   <div class="col-md-4">
     <div class="card bg-light h-100">
       <div class="card-header text-white bg-secondary text-center ls-widest font-weight-bold">
-        Margin
+        Balance
       </div>
       <div class="card-body">
         <h4 class="card-title text-center">
-          {% if diff %}
-            {% if diff >= 0 %}
-            <span class="text-primary">+{{ diff|intcomma }}</span>
+          {% if balance %}
+            {% if balance >= 0 %}
+            <span class="text-primary">+{{ balance|intcomma }}</span>
             {% else %}
-            <span class="text-danger">{{ diff|intcomma }}</span>
+            <span class="text-danger">{{ balance|intcomma }}</span>
             {% endif %}
           {% endif %}
         </h4>
@@ -81,5 +81,5 @@
 {% endblock %}
 {% block extrajs %}
 {% include "kakeibo/components/cdn_chartjs.html" %}
-{% include "kakeibo/components/monthly_balance_chart.html" %}
+{% include "kakeibo/components/chart_donut.html" %}
 {% endblock %}
