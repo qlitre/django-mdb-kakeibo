@@ -93,7 +93,10 @@ class BaseDashPageMixin:
     @staticmethod
     def get_sum_amount(queryset):
         """querysetのamountの合計を返す"""
-        return queryset.aggregate(Sum('amount'))['amount__sum']
+        sum_amount = queryset.aggregate(Sum('amount'))['amount__sum']
+        if sum_amount:
+            return sum_amount
+        return 0
 
     @staticmethod
     def calc_composition_ratio(amount, total):
@@ -338,6 +341,7 @@ class AssetDashMixin(MonthPagerMixin, BaseDashPageMixin):
         # テーブルのトータル部分を作成
         total_amount_prev_month = self.get_sum_amount(qs_prev_month)
         total_amount_begin_term = self.get_sum_amount(qs_begin_term)
+
         total = {
             'current': total_amount_current,
             'prev_month': total_amount_prev_month,

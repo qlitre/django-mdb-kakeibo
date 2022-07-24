@@ -22,22 +22,41 @@ def month_choices():
     return tuple(months)
 
 
+year_choice_field = forms.ChoiceField(
+    label='年での絞り込み',
+    required=False,
+    choices=year_choices(),
+    widget=forms.Select(attrs={'class': 'form-select form-select-sm', 'value': ''})
+)
+
+month_choice_field = forms.ChoiceField(
+    label='月での絞り込み',
+    required=False,
+    choices=month_choices(),
+    widget=forms.Select(attrs={'class': 'form-select form-select-sm'})
+)
+
+create_form_widgets = {
+    'date': forms.TextInput(attrs={'autocomplete': 'off',
+                                   'placeholder': 'date',
+                                   'class': 'form-control'}),
+    'category': forms.Select(attrs={'class': 'form-select'}),
+    'amount': forms.TextInput(attrs={'autocomplete': 'off',
+                                     'placeholder': 'amount',
+                                     'class': 'form-control'}),
+    'description': forms.Textarea(attrs={'autocomplete': 'off',
+                                         'placeholder': 'description',
+                                         'class': 'form-control',
+                                         'rows': '2'}),
+}
+
+
 class PaymentSearchForm(forms.Form):
     """支出検索フォーム"""
 
-    year = forms.ChoiceField(
-        label='年での絞り込み',
-        required=False,
-        choices=year_choices(),
-        widget=forms.Select(attrs={'class': 'form-select form-select-sm', 'value': ''})
-    )
+    year = year_choice_field
 
-    month = forms.ChoiceField(
-        label='月での絞り込み',
-        required=False,
-        choices=month_choices(),
-        widget=forms.Select(attrs={'class': 'form-select form-select-sm'})
-    )
+    month = month_choice_field
 
     greater_than = forms.IntegerField(
         label='Greater Than',
@@ -74,36 +93,14 @@ class PaymentSearchForm(forms.Form):
 
 class IncomeSearchForm(forms.Form):
     """収入検索フォーム"""
-    year = forms.ChoiceField(
-        label='年での絞り込み',
-        required=False,
-        choices=year_choices(),
-        widget=forms.Select(attrs={'class': 'form-select form-select-sm', 'value': ''})
-    )
-
-    month = forms.ChoiceField(
-        label='月での絞り込み',
-        required=False,
-        choices=month_choices(),
-        widget=forms.Select(attrs={'class': 'form-select form-select-sm'})
-    )
+    year = year_choice_field
+    month = month_choice_field
 
 
 class AssetSearchForm(forms.Form):
     """資産検索フォーム"""
-    year = forms.ChoiceField(
-        label='年での絞り込み',
-        required=False,
-        choices=year_choices(),
-        widget=forms.Select(attrs={'class': 'form-select form-select-sm', 'value': ''})
-    )
-
-    month = forms.ChoiceField(
-        label='月での絞り込み',
-        required=False,
-        choices=month_choices(),
-        widget=forms.Select(attrs={'class': 'form-select form-select-sm'})
-    )
+    year = year_choice_field
+    month = month_choice_field
 
     search_category = forms.ModelChoiceField(
         label='カテゴリでの絞り込み',
@@ -119,20 +116,7 @@ class PaymentCreateForm(forms.ModelForm):
     class Meta:
         model = Payment
         fields = '__all__'
-
-        widgets = {
-            'date': forms.TextInput(attrs={'autocomplete': 'off',
-                                           'placeholder': 'date',
-                                           'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-select'}),
-            'amount': forms.TextInput(attrs={'autocomplete': 'off',
-                                             'placeholder': 'amount',
-                                             'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'autocomplete': 'off',
-                                                 'placeholder': 'description',
-                                                 'class': 'form-control',
-                                                 'rows': '2'}),
-        }
+        widgets = create_form_widgets
 
 
 class IncomeCreateForm(forms.ModelForm):
@@ -141,19 +125,7 @@ class IncomeCreateForm(forms.ModelForm):
     class Meta:
         model = Income
         fields = '__all__'
-        widgets = {
-            'date': forms.TextInput(attrs={'autocomplete': 'off',
-                                           'placeholder': 'date',
-                                           'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-select'}),
-            'amount': forms.TextInput(attrs={'autocomplete': 'off',
-                                             'placeholder': 'amount',
-                                             'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'autocomplete': 'off',
-                                                 'placeholder': 'description',
-                                                 'class': 'form-control',
-                                                 'rows': '2'}),
-        }
+        widgets = create_form_widgets
 
 
 class AssetCreateForm(forms.ModelForm):
@@ -162,20 +134,7 @@ class AssetCreateForm(forms.ModelForm):
     class Meta:
         model = Asset
         fields = '__all__'
-
-        widgets = {
-            'date': forms.TextInput(attrs={'autocomplete': 'off',
-                                           'placeholder': 'date',
-                                           'class': 'form-control'}),
-            'category': forms.Select(attrs={'class': 'form-select'}),
-            'amount': forms.TextInput(attrs={'autocomplete': 'off',
-                                             'placeholder': 'amount',
-                                             'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'autocomplete': 'off',
-                                                 'placeholder': 'description',
-                                                 'class': 'form-control',
-                                                 'rows': '2'}),
-        }
+        widgets = create_form_widgets
 
 
 class TransitionGraphSearchForm(forms.Form):
